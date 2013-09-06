@@ -154,12 +154,13 @@ INPUT:
         $close_tag  Name of the closing tag (i.e. "</title>")           
                                                                         
 ***********************************************************************/
-function parse_array($string, $beg_tag, $close_tag)
+function parse_array($string, $beg_tag, $close_tag, $exclude = 0)
     {
     preg_match_all("($beg_tag(.*)$close_tag)siU", $string, $matching_data);
-    return $matching_data[0];
+    return $matching_data[$exclude];
     }
-
+	
+	
 /***********************************************************************
 $value = get_attribute($tag, $attribute)                                
 -------------------------------------------------------------           

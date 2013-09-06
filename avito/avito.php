@@ -13,7 +13,51 @@ $marks[] = 'img';
 $marks[] = 'руб';
 $good_divs = get_divs($tidy,$marks);
 
-var_dump($good_divs);
+for($i=0;$i<count($good_divs);$i++){
+	$data[$i]['imgs']= get_imgs($good_divs[$i]);
+	$data[$i]['links']= get_links($good_divs[$i]);
+	$data[$i]['raw_text']= strip_tags($good_divs[$i]);
+	$data[$i]['clear_text']= clear_text($data[$i]['raw_text']);
+	var_dump($good_divs[$i]);
+	break;
+}
+var_dump($data);
+
+//get type of item (taxonomy)
+//get price
+//get description
+
+function clear_text($str){
+	$str = preg_replace('|(\d+)&nbsp;(\d+)|',"$1$2",$str);//avito prices
+	$str = preg_replace('|&.*;|U',' ',$str);
+	$str = preg_replace('|\x20+|',' ',$str);
+	$str = trim($str);
+	return $str;
+}
+
+function get_links($str){
+	$links = parse_array($str, '<a href="', '"', 1);
+	$uniq_links = array_unique($links);
+	return $uniq_links;
+}
+
+/*
+function get_imgs_dom($str){
+	$html = str_get_html($str);
+	foreach($html->find('img') as $element) {
+		$imgs[] = $element;// -> add something here 
+	}
+	$html->clear();
+	return $imgs;
+}*/
+
+function get_imgs($str){
+	$imgs = parse_array($str, '<img', '/>');
+	foreach($imgs as $img){
+		$img_links[] = get_attribute($img, 'src');
+	}
+	return $img_links;
+}
 
 function get_divs($str,$marks){
 	$html = str_get_html($str);
@@ -34,7 +78,6 @@ function get_divs($str,$marks){
 		}
 	}
 	$html->clear();
-	unset($html);
 	
 	$average = round($sum/$i);
 	echo "[+]Sum $sum\n";
