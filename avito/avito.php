@@ -1,9 +1,9 @@
 ﻿<?php
-require_once 'R:\0code\Lib\LIB_parse.php';
-require_once 'R:\0code\Lib\LIB_http.php';
+require_once '..\libs\LIB_parse.php';
+require_once '..\libs\LIB_http.php';
 echo "\n[+]Started\n";
 
-$debug_file = 'F:\tmp\avito\debug.html';
+$debug_file = 'debug.html';
 $url = "http://www.avito.ru/sankt-peterburg/ohota_i_rybalka?metro_id=170&user=1&s=1";
 $in = http_get_debug($url,$debug_file);
 
