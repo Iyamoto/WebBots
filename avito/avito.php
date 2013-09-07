@@ -3,25 +3,59 @@
 Avito.ru grabber and parser
 */
 require_once '..\libs\web_bots.php';
+require_once '..\libs\taxonomy.php';
 echo "\n[+] Started\n";
 
 $debug_file = 'debug.html';
 $url = "http://www.avito.ru/sankt-peterburg/ohota_i_rybalka?metro_id=170&user=1&s=1";
 $in = http_get_debug($url,$debug_file);
 $tidy = tidy_html($in);
+//add code page check and convert if needed
 
 $div_marks[] = 'img';
 $div_marks[] = 'руб';
 $good_divs = get_divs($tidy,$div_marks);
+$corrupt_blocks = 0;
+$untagged_blocks = 0;
 
 for($i=0;$i<count($good_divs);$i++){
+	$fill = 0;
 	$data[$i]['imgs']= get_imgs($good_divs[$i]);
+	if(sizeof($data[$i]['imgs'])>0) $fill++;
 	$data[$i]['links']= get_links($good_divs[$i]);
+	if(sizeof($data[$i]['imgs'])>0) $fill++;
 	$data[$i]['raw_text']= strip_tags($good_divs[$i]);
+	if(strlen($data[$i]['raw_text'])>0) $fill++;
 	$data[$i]['clear_text']= clear_text($data[$i]['raw_text']);
+	if(strlen($data[$i]['clear_text'])>0) $fill++;
 	$data[$i]['price']= get_price($data[$i]['clear_text']);
+	if(strlen($data[$i]['price'])>0) $fill++;
+	if($fill<5) {
+		echo "[-] Corrupted block: $i\n";
+		$corrupt_blocks++;
+	} else {
+		$data[$i]['hash'] = md5($data[$i]['clear_text']);
+		$notag = true;
+		foreach($taxonomy as $category=>$marks){
+			foreach($marks as $mark){
+				if(mb_stristr($data[$i]['clear_text'], $mark)) { 
+					$data[$i]['tags'][] = $category;
+					$notag = false;
+					break;
+				}
+			}
+		}
+		if($notag) {
+			$data[$i]['tags'][] = 'NA';
+			$untagged_blocks++;
+		}	
+	}
+	//break;
 }
-
+echo "[i] Corrupted blocks: $corrupt_blocks\n";
+echo "[i] Blocks without tags: $untagged_blocks\n";
+var_dump($data);
+	
 if(save_json('avito.gz',$data)) echo "[+] Saved\n";
 // Or add to mysql db
 

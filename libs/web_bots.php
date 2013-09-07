@@ -3,13 +3,16 @@ require_once '..\libs\LIB_parse.php';
 require_once '..\libs\LIB_http.php';
 require_once '..\libs\simple_html_dom.php';
 
+mb_internal_encoding("UTF-8");
+
 $price_marks[] = 'руб.';
 $price_marks[] = 'рублей';
 
+//what to do with several prices?
 function get_price($str){
 	global $price_marks;
 	foreach($price_marks as $mark){
-		if(stristr($str, $mark)) {
+		if(mb_stristr($str, $mark)) {
 			$pattern = '|(\d+)[^\d]*'.$mark.'|';
 			$r = preg_match($pattern, $str,$m);
 			if($r) return $m[1];
