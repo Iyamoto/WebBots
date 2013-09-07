@@ -100,7 +100,7 @@ function load_json($fn){
 	$gz = file_get_contents($fn);
 	if($gz){
 		$json = gzuncompress($gz);
-		$data = json_decode($json);
+		$data = json_decode($json,true);
 		return $data;
 	} else {
 		echo "[-] Cant load file $fn\n";

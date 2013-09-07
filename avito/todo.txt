@@ -1,31 +1,37 @@
 ToDo
 ====
 
-design changes checker - report to master - full page similarity? no. how to check only design?
-get_words($str){} ---
-
+Uniq?
+	how to find/separate new items? hash?
+	
 Top-down design
 Module 1 "Parser" named by source :Get, parse and tag data to db mysql
+	html file to string
+		how to detect a code page? meta tags, iconv to utf8
+		design changes checker - report to master - full page similarity? no. how to check only design?
+		Human emulation
+			start from main page
+			keep session
+			give right refferer
+			use random timeouts
+		string to array of blocks
+	blocks to array of elements
+	elements to db (json or mysql)
+
 Module 2 "Analyser" :
-
-Stage 1 Manual taxonomy (keys, points of interest)
-Find taxonomy dictionary
-Best way to keep taxonomy? csv - cat:key1,key2
-Stage 2 For big data sources - automatic clustering
-
-
-how to detect a code page? meta tags, iconv to utf8
-how to find/separate new items? hash?
-taxonomy?
-category? 
-	auto clustering data
-	price statistics, min, max, average, alert level
-	price graphics
-
-Human emulation
-start from main page
-keep session
-give right refferer
-use random timeouts
+	db to array of elements
+	clustering
+		Stage 1 Manual taxonomy (keys, points of interest)
+			Find taxonomy dictionary
+			Best way to keep taxonomy? csv - cat:key1,key2
+		Stage 2 For big data sources - automatic clustering
+			get_words($str){} ---
+	statistic
+		price statistics, min, max, average, alert level
+	anomaly, optimisation
+	alerter
+	visualisation
+		price graphics
+	
 
 

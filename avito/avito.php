@@ -3,7 +3,6 @@
 Avito.ru grabber and parser
 */
 require_once '..\libs\web_bots.php';
-require_once '..\libs\taxonomy.php';
 echo "\n[+] Started\n";
 
 $db_file = 'avito.gz';
@@ -17,15 +16,11 @@ if(!$in) {
 $tidy = tidy_html($in);
 //add code page check and convert if needed
 
-if(file_exists($db_file)){
-	$maindata = load_json($db_file);
-}
 
 $div_marks[] = 'img';
 $div_marks[] = 'руб';
 $good_divs = get_divs($tidy,$div_marks);
 $corrupt_blocks = 0;
-$untagged_blocks = 0;
 
 for($i=0;$i<count($good_divs);$i++){
 	$fill = 0;
@@ -44,25 +39,11 @@ for($i=0;$i<count($good_divs);$i++){
 		$corrupt_blocks++;
 	} else {
 		$data[$i]['hash'] = md5($data[$i]['clear_text']);
-		$notag = true;
-		foreach($taxonomy as $category=>$marks){
-			foreach($marks as $mark){
-				if(mb_stristr($data[$i]['clear_text'], $mark)) { 
-					$data[$i]['tags'][] = $category;
-					$notag = false;
-					break;
-				}
-			}
-		}
-		if($notag) {
-			$data[$i]['tags'][] = 'NA';
-			$untagged_blocks++;
-		}	
 	}
 	//break;
 }
+
 echo "[i] Corrupted blocks: $corrupt_blocks\n";
-echo "[i] Blocks without tags: $untagged_blocks\n";
 var_dump($data);
 	
 if(save_json($db_file,$data)) echo "[+] Saved\n";
