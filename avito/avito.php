@@ -9,15 +9,20 @@ $url = "http://www.avito.ru/sankt-peterburg/ohota_i_rybalka?metro_id=170&user=1&
 $in = http_get_debug($url,$debug_file);
 $tidy = tidy_html($in);
 
-$marks[] = 'img';
-$marks[] = 'руб';
-$good_divs = get_divs($tidy,$marks);
+$div_marks[] = 'img';
+$div_marks[] = 'руб';
+$good_divs = get_divs($tidy,$div_marks);
+
+$price_marks[] = 'руб.';
+$price_marks[] = 'рублей';
+
 
 for($i=0;$i<count($good_divs);$i++){
 	$data[$i]['imgs']= get_imgs($good_divs[$i]);
 	$data[$i]['links']= get_links($good_divs[$i]);
 	$data[$i]['raw_text']= strip_tags($good_divs[$i]);
 	$data[$i]['clear_text']= clear_text($data[$i]['raw_text']);
+	$data[$i]['price']= get_price($data[$i]['clear_text']);
 	var_dump($good_divs[$i]);
 	break;
 }
@@ -26,6 +31,20 @@ var_dump($data);
 //get type of item (taxonomy)
 //get price
 //get description
+//design changes checker
+
+
+function get_price($str){
+	global $price_marks;
+	foreach($price_marks as $mark){
+		if(stristr($str, $mark)) {
+			$pattern = '|(\d+)[^\d]*'.$mark.'|';
+			$r = preg_match($pattern, $str,$m);
+			if($r) return $m[1];
+		}
+	}
+	return false;
+}
 
 function clear_text($str){
 	$str = preg_replace('|(\d+)&nbsp;(\d+)|',"$1$2",$str);//avito prices
