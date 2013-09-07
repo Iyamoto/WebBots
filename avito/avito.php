@@ -6,11 +6,20 @@ require_once '..\libs\web_bots.php';
 require_once '..\libs\taxonomy.php';
 echo "\n[+] Started\n";
 
+$db_file = 'avito.gz';
 $debug_file = 'debug.html';
 $url = "http://www.avito.ru/sankt-peterburg/ohota_i_rybalka?metro_id=170&user=1&s=1";
 $in = http_get_debug($url,$debug_file);
+if(!$in) {
+	echo "[-] Cant load html\n";
+	exit;
+}	
 $tidy = tidy_html($in);
 //add code page check and convert if needed
+
+if(file_exists($db_file)){
+	$maindata = load_json($db_file);
+}
 
 $div_marks[] = 'img';
 $div_marks[] = 'руб';
@@ -56,7 +65,7 @@ echo "[i] Corrupted blocks: $corrupt_blocks\n";
 echo "[i] Blocks without tags: $untagged_blocks\n";
 var_dump($data);
 	
-if(save_json('avito.gz',$data)) echo "[+] Saved\n";
+if(save_json($db_file,$data)) echo "[+] Saved\n";
 // Or add to mysql db
 
 ?>

@@ -1,16 +1,16 @@
 ToDo
 ====
 
-get type of item (taxonomy)
 design changes checker - report to master - full page similarity? no. how to check only design?
-get_words($str){}
+get_words($str){} ---
 
 Top-down design
-Get and parse data to db mysql
+Module 1 "Parser" named by source :Get, parse and tag data to db mysql
+Module 2 "Analyser" :
 
 Stage 1 Manual taxonomy (keys, points of interest)
 Find taxonomy dictionary
-Best way to keep taxonomy?
+Best way to keep taxonomy? csv - cat:key1,key2
 Stage 2 For big data sources - automatic clustering
 
 
