@@ -20,10 +20,7 @@ for($i=0;$i<count($good_divs);$i++){
 	$data[$i]['raw_text']= strip_tags($good_divs[$i]);
 	$data[$i]['clear_text']= clear_text($data[$i]['raw_text']);
 	$data[$i]['price']= get_price($data[$i]['clear_text']);
-	//var_dump($good_divs[$i]);
-	//break;
 }
-
 
 if(save_json('avito.gz',$data)) echo "[+] Saved\n";
 // Or add to mysql db

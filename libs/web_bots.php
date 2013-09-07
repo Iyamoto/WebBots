@@ -71,9 +71,9 @@ function get_divs($str,$marks){
 	$html->clear();
 	
 	$average = round($sum/$i);
-	echo "[+]Sum $sum\n";
-	echo "[+]Average $average\n";
-	echo "[+]Found $i div blocks\n";
+	echo "[+] Sum $sum\n";
+	echo "[+] Average $average\n";
+	echo "[+] Found $i div blocks\n";
 
 	$g=0;
 	foreach($divs as $n=>$div){
@@ -82,7 +82,7 @@ function get_divs($str,$marks){
 			$g++;
 		}	
 	}
-	echo "[+]Found $g good div blocks\n";
+	echo "[+] Found $g good div blocks\n";
 	return $good_divs;
 }
 

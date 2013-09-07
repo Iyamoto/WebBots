@@ -1,17 +1,30 @@
 ToDo
+====
 
 get type of item (taxonomy)
-design changes checker - report to master
-full block checker
+design changes checker - report to master - full page similarity
+block filling checker
 get_words($str){}
 
 Top-down design
 Get and parse data to db mysql
 
-how to find new items? hash?
+Stage 1 Manual taxonomy (keys, points of interest)
+Stage 2 For big data sources - automatic clustering
+
+
+how to detect a code page? meta tags, iconv to utf8
+how to find/separate new items? hash?
 taxonomy?
 category? 
-	clustering data
-	price statistics
+	auto clustering data
+	price statistics, min, max, average, alert level
 	price graphics
-points of interest
+
+Human emulation
+start from main page
+keep session
+give right refferer
+use random timeouts
+
+
