@@ -86,4 +86,23 @@ function get_divs($str,$marks){
 	return $good_divs;
 }
 
+function save_json($fn,$data){
+	$json = json_encode($data);
+	$gz = gzcompress($json);
+	//var_dump(strlen($json), strlen($gz));
+	return file_put_contents($fn, $gz);
+}
+
+function load_json($fn){
+	$gz = file_get_contents($fn);
+	if($gz){
+		$json = gzuncompress($gz);
+		$data = json_decode($json);
+		return $data;
+	} else {
+		echo "[-] Cant load file $fn\n";
+		return false;
+	}	
+}
+
 ?>

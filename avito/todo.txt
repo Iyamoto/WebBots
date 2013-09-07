@@ -1,0 +1,17 @@
+ToDo
+
+get type of item (taxonomy)
+design changes checker - report to master
+full block checker
+get_words($str){}
+
+Top-down design
+Get and parse data to db mysql
+
+how to find new items? hash?
+taxonomy?
+category? 
+	clustering data
+	price statistics
+	price graphics
+points of interest
