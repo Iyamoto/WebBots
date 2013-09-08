@@ -4,7 +4,6 @@
  * Avito.ru grabber and parser
 */
 require_once '..\libs\web_bots.php';
-require_once '..\libs\LIB_download_images.php';
 echo "\n[+] Started\n";
 
 $db_dir ='..\db';
@@ -21,8 +20,7 @@ if(!$in) {
 //What is a base url? Domain
 $url = $in['STATUS']['url'];
 $base_url = get_base_page_address($url);
-var_dump($base_url);
-$base_url = 'http://www.avito.ru';//temp
+echo "[+] Base url: $base_url\n";
 
 $tidy = tidy_html($in['FILE']);
 //base url finder
@@ -57,7 +55,7 @@ for($i=0;$i<count($html_blocks);$i++){
 }
 
 echo "[i] Corrupted blocks: $corrupt_blocks\n";
-//var_dump($blocks);
+var_dump($blocks);
 	
 if(save_json($db_file,$blocks)) echo "[+] Saved\n";
 
