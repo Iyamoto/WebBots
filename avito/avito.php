@@ -28,7 +28,7 @@ for($i=0;$i<count($good_divs);$i++){
 	if(sizeof($data[$i]['imgs'])>0) $fill++;
 	$data[$i]['links']= get_links($good_divs[$i]);
 	if(sizeof($data[$i]['imgs'])>0) $fill++;
-	$data[$i]['raw_text']= strip_tags($good_divs[$i]);
+	$data[$i]['raw_text']= strip_tags($good_divs[$i]);//Should I keep a raw text?
 	if(strlen($data[$i]['raw_text'])>0) $fill++;
 	$data[$i]['clear_text']= clear_text($data[$i]['raw_text']);
 	if(strlen($data[$i]['clear_text'])>0) $fill++;
