@@ -1,6 +1,6 @@
 <?php
 /*
-Module 2 - Analysis
+ * Module 2 - Analysis
 */
 require_once '..\libs\web_bots.php';
 require_once '..\libs\taxonomy.php';

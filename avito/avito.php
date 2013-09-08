@@ -1,6 +1,7 @@
 ﻿<?php
 /*
-Avito.ru grabber and parser
+ * Module 1
+ * Avito.ru grabber and parser
 */
 require_once '..\libs\web_bots.php';
 echo "\n[+] Started\n";

@@ -2,9 +2,11 @@ ToDo
 ====
 
 Add OS delimiter detection
+Research taxonomy
 
 Top-down design
-Module 1 "Parser" named by source :Get, parse and data to db
+===============
+Module 1 "Collector" named by source : Get, parse and save data to db
 +	html file to string
 		how to detect a code page? meta tags, iconv to utf8
 		design changes checker - report to master - full page similarity? no. how to check only design?
@@ -15,9 +17,9 @@ Module 1 "Parser" named by source :Get, parse and data to db
 			use random timeouts
 +	string to array of blocks
 +	blocks to array of elements
-+	elements to db (json or mysql)
++	elements to json gzip file
 
-Module 2 "Analyser" :
+Module 2 "Analyser" m2.php : Form global db, check new data for uniqs, tag and cluster data, do some stats
 +	new db to array of blocks
 +       if global db exists
 +           global db to array of blocks
