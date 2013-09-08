@@ -7,66 +7,67 @@ require_once '..\libs\taxonomy.php';
 echo "\n[+] Started\n";
 
 $db_in_file = '..\db\avito.gz';
-$db_tagged_file = '..\db\avito-tagged.gz';//global data base
+$db_global_file = '..\db\avito-global.gz';//global data base
 $db_stats_file = '..\db\avito-stats.gz';
-if(file_exists($db_in_file)){
-	$new_blocks = load_json($db_in_file);
-}
-$new_size = count($new_blocks);
-echo "[+] Read $new_size new blocks\n";
 
-if(file_exists($db_tagged_file)){
-	$global_blocks = load_json($db_tagged_file);
-}
-$global_size = count($global_blocks);
-echo "[+] Read $global_size global blocks\n";
+//Read new blocks
+$new_blocks = read_db_from_file($db_in_file);
+if($new_blocks){
+    $new_size = sizeof($new_blocks);
+    echo "[+] Read $new_size new blocks\n";
+} else exit ('Problem with new blocks');
 
-//Filter Uniqs
-//Optimization needed
-/*
-Go throw new blocks
-Check hash of new block throw global blocks
-Equal - next new block
-Not equal - next global block
-Not found - uniq +1
-*/
-$uniq_blocks = 0;
-foreach($new_blocks as $new_block){
+//Read global db
+$global_blocks = read_db_from_file($db_global_file);
+if($global_blocks) { //Global db exists
+    $global_size = sizeof($global_blocks);
+    echo "[+] Read $global_size global blocks\n";
+    
+    //Filter Uniqs
+    //Optimization needed
+    /*
+    Go throw new blocks
+    Check hash of new block throw global blocks
+    Equal - next new block
+    Not equal - next global block
+    Not found - uniq +1
+
+    Separate function
+    */
+    $uniq_blocks_counter = 0;
+    foreach($new_blocks as $new_block){
 	$i=0;
 	foreach($global_blocks as $global_block){
 		if($new_block['hash'] == $global_block['hash']) break;
 		$i++;
 	}
 	if($i==$global_size) {
-		$uniq_blocks++;
-		$global_block[] = $new_block;//Order of global blocks?
+		$uniq_blocks_counter++;
+		$uniq_blocks[] = $new_block;//Order of global blocks?
 	}	
+    } 
+    echo "[+] Uniq Blocks found: $uniq_blocks_counter\n";
+    
+    if($uniq_blocks_counter>0){
+        $tagged_blocks = tagged($uniq_blocks);//Tag uniq blocks
+        unset($uniq_blocks);
+        unset($new_blocks);
+        //Insert new tagged blocks into global db
+        $global_blocks = insert_to_array($global_blocks,$tagged_blocks);
+    } else exit('[-] Exit: Zero uniq blocks found');
+} else { //Global db is empty
+    $global_blocks = tagged($new_blocks);//Tag uniq blocks
+    unset($new_blocks);
 }
-echo "[+] Uniq Blocks found: $uniq_blocks\n";
 
-$blocks = $new_blocks;
-$size = $new_size;
+$global_size = sizeof($global_blocks);
+echo "[+] Global db size: $global_size\n";
 
-//Clustering
-$untagged_blocks = 0;
-for($i=0;$i<$size;$i++){
-	$notag = true;
-	foreach($taxonomy as $category=>$marks){
-		foreach($marks as $mark){
-			if(mb_stristr($blocks[$i]['clear_text'], $mark)) { 
-				$blocks[$i]['tags'][] = $category;
-				$clusters[$category][]=$blocks[$i];
-				$notag = false;
-				break;
-			}
-		}
-	}
-	if($notag) {
-		$blocks[$i]['tags'][] = 'NA';
-		$untagged_blocks++;
-	}	
-}
-echo "[i] Blocks without tags: $untagged_blocks\n";
+//Parse global to clusters
+//Why do it every run for all global blocks?
+$clusters = form_clusters($global_blocks);
+$clusters_size = sizeof($clusters);
+echo "[+] Formed $clusters_size clusters\n";
 
 //Statistics
 foreach($clusters as $category=>$tagged_blocks){
@@ -85,10 +86,48 @@ foreach($clusters as $category=>$tagged_blocks){
 	$stats[$category]['low_limit'] = round($stats[$category]['average']-3*$stats[$category]['standard_deviation']);
 	$stats[$category]['high_limit'] = round($stats[$category]['average']+3*$stats[$category]['standard_deviation']);
 }
-//var_dump($stats);
 
-if(save_json($db_tagged_file,$blocks)) echo "[+] Saved tagged blocks\n";
-if(save_json($db_stats_file,$stats)) echo "[+] Saved stats\n";
+if(save_json($db_global_file,$global_blocks)) echo "[+] Saved global db file\n";
+if(save_json($db_stats_file,$stats)) echo "[+] Saved stats file\n";
 
+function form_clusters($blocks){
+    foreach ($blocks as $block){
+        foreach($block['tags'] as $tag){
+            $clusters[$tag][]=$block;
+        }
+    }    
+    return $clusters;
+}
+
+function tagged($blocks){ //Clustering
+    $size = sizeof($blocks);
+    global $taxonomy;
+    $untagged_blocks_counter = 0;
+    for($i=0;$i<$size;$i++){
+        $notag = true;
+	foreach($taxonomy as $category=>$marks){
+		foreach($marks as $mark){
+			if(mb_stristr($blocks[$i]['clear_text'], $mark)) { 
+				$blocks[$i]['tags'][] = $category;
+				$notag = false;
+				break;
+			}
+		}
+	}
+	if($notag) {
+		$blocks[$i]['tags'][] = 'NA';
+		$untagged_blocks_counter++;
+	}	
+    }
+    echo "[i] Blocks without tags: $untagged_blocks_counter\n";
+    return $blocks;
+}
+
+function insert_to_array($base_array,$add_array){
+    foreach($base_array as $array){
+        $add_array[]=$array;
+    }
+    return $add_array;
+}
 
 ?>

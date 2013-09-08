@@ -108,4 +108,15 @@ function load_json($fn){
 	}	
 }
 
+function read_db_from_file($filename){
+    if(file_exists($filename)){
+    	$json = load_json($filename);
+        if($json) return $json;
+        else return false;
+    } else {
+        echo "[-] $filename not found\n";
+        return false;
+    }    
+}
+
 ?>

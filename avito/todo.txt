@@ -19,13 +19,22 @@ Module 1 "Parser" named by source :Get, parse and data to db
 +	elements to db (json or mysql)
 
 Module 2 "Analyser" :
-+	db to array of elements
-+	clustering
-		Stage 1 Manual taxonomy (keys, points of interest)
-			Find taxonomy dictionary
-			Best way to keep taxonomy? csv - cat:key1,key2
-		Stage 2 For big data sources - automatic clustering
-			get_words($str){} ---
++	new db to array of blocks
+        if global db exists
+            global db to array of blocks
++           filter uniq blocks
+            cluster uniq blocks
+            add uniq tagged blocks to global
+        if global db does not exist
+            cluster new blocks
+                clustering
+                    Stage 1 Manual taxonomy (keys, points of interest)
+                    	Find taxonomy dictionary
+                    	Best way to keep taxonomy? csv - cat:key1,key2
+                    Stage 2 For big data sources - automatic clustering
+                    	get_words($str){} ---
+            add new blocks to global
+        parse global blocks to category array
 +	statistic
 		price statistics, min, max, average, sigma, alert level
 	anomaly, optimisation
