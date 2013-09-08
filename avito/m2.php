@@ -25,37 +25,13 @@ if($global_blocks) { //Global db exists
     echo "[+] Read $global_size global blocks\n";
     
     //Filter Uniqs
-    //Optimization needed
-    /*
-    Go throw new blocks
-    Check hash of new block throw global blocks
-    Equal - next new block
-    Not equal - next global block
-    Not found - uniq +1
-
-    Separate function
-    */
-    $uniq_blocks_counter = 0;
-    foreach($new_blocks as $new_block){
-	$i=0;
-	foreach($global_blocks as $global_block){
-		if($new_block['hash'] == $global_block['hash']) break;
-		$i++;
-	}
-	if($i==$global_size) {
-		$uniq_blocks_counter++;
-		$uniq_blocks[] = $new_block;//Order of global blocks?
-	}	
-    } 
-    echo "[+] Uniq Blocks found: $uniq_blocks_counter\n";
-    
-    if($uniq_blocks_counter>0){
-        $tagged_blocks = tagged($uniq_blocks);//Tag uniq blocks
-        unset($uniq_blocks);
-        unset($new_blocks);
-        //Insert new tagged blocks into global db
-        $global_blocks = insert_to_array($global_blocks,$tagged_blocks);
-    } else exit('[-] Exit: Zero uniq blocks found');
+    $uniq_blocks = get_uniq_blocks($new_blocks, $global_blocks);
+    if(!$uniq_blocks) exit('[-] Exit: Zero uniq blocks found');
+    $tagged_blocks = tagged($uniq_blocks);//Tag uniq blocks
+    unset($uniq_blocks);
+    unset($new_blocks);
+    //Insert new tagged blocks into global db
+    $global_blocks = insert_to_array($global_blocks,$tagged_blocks);
 } else { //Global db is empty
     $global_blocks = tagged($new_blocks);//Tag uniq blocks
     unset($new_blocks);
@@ -76,7 +52,7 @@ foreach($clusters as $category=>$tagged_blocks){
 	$stats[$category]['sum'] = 0;
 	$SX2=0;
 	foreach($tagged_blocks as $tagged_block){
-		$stats[$category]['pool'][] = $tagged_block['price'];
+		$stats[$category]['pool'][] = $tagged_block['price'];//add block hash?
 		$stats[$category]['sum'] += $tagged_block['price'];
 		$SX2 += $tagged_block['price']*$tagged_block['price'];
 	}
@@ -129,6 +105,34 @@ function insert_to_array($base_array,$add_array){
         $add_array[]=$array;
     }
     return $add_array;
+}
+/*
+    Filter Uniqs
+    Optimization needed
+    Go throw new blocks
+    Check hash of new block throw global blocks
+    Equal - next new block
+    Not equal - next global block
+    Not found - uniq +1   
+ */
+
+function get_uniq_blocks($new_blocks, $global_blocks){
+    $uniq_blocks_counter = 0;
+    $global_size = sizeof($global_blocks);
+    foreach($new_blocks as $new_block){
+	$i=0;
+	foreach($global_blocks as $global_block){
+		if($new_block['hash'] == $global_block['hash']) break;
+		$i++;
+	}
+	if($i==$global_size) {
+		$uniq_blocks_counter++;
+		$uniq_blocks[] = $new_block;//Order of global blocks?
+	}	
+    } 
+    echo "[+] Uniq Blocks found: $uniq_blocks_counter\n";
+    if ($uniq_blocks_counter>0)  return $uniq_blocks;
+    else return false;
 }
 
 ?>

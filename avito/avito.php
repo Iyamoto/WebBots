@@ -55,7 +55,7 @@ for($i=0;$i<count($html_blocks);$i++){
 }
 
 echo "[i] Corrupted blocks: $corrupt_blocks\n";
-var_dump($blocks);
+//var_dump($blocks);
 	
 if(save_json($db_file,$blocks)) echo "[+] Saved\n";
 

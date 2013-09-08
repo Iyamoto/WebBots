@@ -1,6 +1,7 @@
 ToDo
 ====
 
+Hashes as blocks IDs?
 Add OS delimiter detection
 Research taxonomy
 
