@@ -29,9 +29,14 @@ function clear_text($str){
 	return $str;
 }
 
-function get_links($str){
+function get_links($str, $base_url){
 	$links = parse_array($str, '<a href="', '"', 1);
 	$uniq_links = array_unique($links);
+        for($i=0;$i<sizeof($uniq_links);$i++){
+            $url = $uniq_links[$i];
+            //Find better way to check for base url absence
+            if(!stristr($url, 'http://')) $uniq_links[$i] = $base_url.$url;
+        }
 	return $uniq_links;
 }
 
@@ -45,10 +50,14 @@ function get_imgs_dom($str){
 	return $imgs;
 }*/
 
-function get_imgs($str){
+function get_imgs($str, $base_url){
 	$imgs = parse_array($str, '<img', '/>');
 	foreach($imgs as $img){
-		$img_links[] = get_attribute($img, 'src');
+                $url = get_attribute($img, 'src');
+                $img_links[] = $url;
+                /*
+                if(stristr($url, 'http://')) $img_links[] = $url;
+                else $img_links[] = $base_url.$url;*/
 	}
 	return $img_links;
 }

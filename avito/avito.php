@@ -4,6 +4,7 @@
  * Avito.ru grabber and parser
 */
 require_once '..\libs\web_bots.php';
+require_once '..\libs\LIB_download_images.php';
 echo "\n[+] Started\n";
 
 $db_dir ='..\db';
@@ -16,7 +17,14 @@ if(!$in) {
 	echo "[-] Cant load html\n";
 	exit;
 }	
-$tidy = tidy_html($in);
+//Base Url 
+//What is a base url? Domain
+$url = $in['STATUS']['url'];
+$base_url = get_base_page_address($url);
+var_dump($base_url);
+$base_url = 'http://www.avito.ru';//temp
+
+$tidy = tidy_html($in['FILE']);
 //base url finder
 //add code page check and convert if needed
 
@@ -29,9 +37,9 @@ $corrupt_blocks = 0;
 //Blocks to elements
 for($i=0;$i<count($html_blocks);$i++){
 	$fill = 0;
-	$blocks[$i]['imgs']= get_imgs($html_blocks[$i]);
+	$blocks[$i]['imgs']= get_imgs($html_blocks[$i], $base_url);
 	if(sizeof($blocks[$i]['imgs'])>0) $fill++;
-	$blocks[$i]['links']= get_links($html_blocks[$i]);
+	$blocks[$i]['links']= get_links($html_blocks[$i], $base_url);
 	if(sizeof($blocks[$i]['imgs'])>0) $fill++;
 	$blocks[$i]['raw_text']= strip_tags($html_blocks[$i]);//Should I keep a raw text?
 	if(strlen($blocks[$i]['raw_text'])>0) $fill++;

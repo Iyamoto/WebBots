@@ -5,7 +5,7 @@ Copyright 2007, Michael Schrenk
    This software is designed for use with the book,                                                             
    "Webbots, Spiders, and Screen Scarpers", Michael Schrenk, 2007 No Starch Press, San Francisco CA             
                                                                                                                 
-W3C® SOFTWARE NOTICE AND LICENSE                                                                                
+W3Cï¿½ SOFTWARE NOTICE AND LICENSE                                                                                
                                                                                                                 
 This work (and included software, documentation such as READMEs, or other                                       
 related items) is being provided by the copyright holders under the following license.                          
@@ -320,6 +320,8 @@ function http($target, $ref, $method, $data_array, $incl_head)
 function http_get_debug($url,$debug_file){
 	if(file_exists($debug_file)){
 		$in = file_get_contents($debug_file);
+                $web_page['FILE'] = $in;
+                $web_page['STATUS']['url'] = $url;
 	} else {
 		# Get web page
 		$ref = "";
@@ -332,11 +334,11 @@ function http_get_debug($url,$debug_file){
 		$uncompressed_size = strlen($web_page['FILE']);
 		$compressed_size = strlen(gzcompress($web_page['FILE'], $compression_value = 9)); 
 		$noformat_size = strlen(strip_tags($web_page['FILE']));
-		var_dump($uncompressed_size,$compressed_size,$noformat_size);
+		//var_dump($uncompressed_size,$compressed_size,$noformat_size);
 		
 		file_put_contents($debug_file, $web_page['FILE']);
-		$in = $web_page['FILE'];
+		//$in = $web_page['FILE'];
 	}
-	return $in;
+	return $web_page;
 }	
 ?>
