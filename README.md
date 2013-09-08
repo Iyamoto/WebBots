@@ -52,3 +52,22 @@ Module 2 "Analyser" m2.php : Form global db, check new data for uniqs, tag and c
 		report anomaly?
 	visualisation
 		price graphics
+
+WebBots Ideas
+=============
+
+New RU domains
+    Headers
+    IP
+    html
+        Titles
+        Images hijacking
+        Links checkers
+        iframes
+        malware
+        Profile
+            emails
+
+    whois    
+
+Free broken link checker

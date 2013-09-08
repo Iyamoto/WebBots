@@ -2,14 +2,14 @@
 /*
  * Module 2 - Analysis
 */
-require_once '..\libs\web_bots.php';
-require_once '..\libs\taxonomy.php';
+require_once '..'.DIRECTORY_SEPARATOR.'libs'.DIRECTORY_SEPARATOR.'web_bots.php';
+require_once '..'.DIRECTORY_SEPARATOR.'libs'.DIRECTORY_SEPARATOR.'taxonomy.php';
 echo "\n[+] Started\n";
 
-$db_dir ='..\db';
-$db_in_file = $db_dir.'\avito.gz';
-$db_global_file = $db_dir.'\avito-global.gz';//global data base
-$db_stats_file = $db_dir.'\avito-stats.gz';
+$db_dir ='..'.DIRECTORY_SEPARATOR.'db';
+$db_in_file = $db_dir.DIRECTORY_SEPARATOR.'avito.gz';
+$db_global_file = $db_dir.DIRECTORY_SEPARATOR.'avito-global.gz';//global data base
+$db_stats_file = $db_dir.DIRECTORY_SEPARATOR.'avito-stats.gz';
 
 //Read new blocks
 $new_blocks = read_db_from_file($db_in_file);

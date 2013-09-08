@@ -3,11 +3,11 @@
  * Module 1
  * Avito.ru grabber and parser
 */
-require_once '..\libs\web_bots.php';
+require_once '..'.DIRECTORY_SEPARATOR.'libs'.DIRECTORY_SEPARATOR.'web_bots.php';
 echo "\n[+] Started\n";
 
-$db_dir ='..\db';
-$db_file = $db_dir.'\avito.gz';//local, one run data base
+$db_dir ='..'.DIRECTORY_SEPARATOR.'db';
+$db_file = $db_dir.DIRECTORY_SEPARATOR.'avito.gz';//local, one run data base
 if(!is_dir($db_dir)) mkdir ($db_dir);
 $debug_file = 'debug.html';//cache
 $url = "http://www.avito.ru/sankt-peterburg/ohota_i_rybalka?metro_id=170&user=1&s=1";
