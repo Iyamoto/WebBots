@@ -1,9 +1,8 @@
 ToDo
 ====
 
-Uniq?
-	how to find/separate new items? hash?
-	
+Add OS delimiter detection
+
 Top-down design
 Module 1 "Parser" named by source :Get, parse and data to db
 +	html file to string
@@ -20,23 +19,23 @@ Module 1 "Parser" named by source :Get, parse and data to db
 
 Module 2 "Analyser" :
 +	new db to array of blocks
-        if global db exists
-            global db to array of blocks
++       if global db exists
++           global db to array of blocks
 +           filter uniq blocks
-            cluster uniq blocks
-            add uniq tagged blocks to global
-        if global db does not exist
-            cluster new blocks
++           cluster uniq blocks
++           add uniq tagged blocks to global
++       if global db does not exist
++           cluster new blocks
                 clustering
                     Stage 1 Manual taxonomy (keys, points of interest)
                     	Find taxonomy dictionary
                     	Best way to keep taxonomy? csv - cat:key1,key2
                     Stage 2 For big data sources - automatic clustering
                     	get_words($str){} ---
-            add new blocks to global
-        parse global blocks to category array
++           add new blocks to global
++        parse global blocks to category array
 +	statistic
-		price statistics, min, max, average, sigma, alert level
++		price statistics, min, max, average, sigma, alert level
 	anomaly, optimisation
 	alerter
 		report all interests

@@ -6,9 +6,10 @@ require_once '..\libs\web_bots.php';
 require_once '..\libs\taxonomy.php';
 echo "\n[+] Started\n";
 
-$db_in_file = '..\db\avito.gz';
-$db_global_file = '..\db\avito-global.gz';//global data base
-$db_stats_file = '..\db\avito-stats.gz';
+$db_dir ='..\db';
+$db_in_file = $db_dir.'\avito.gz';
+$db_global_file = $db_dir.'\avito-global.gz';//global data base
+$db_stats_file = $db_dir.'\avito-stats.gz';
 
 //Read new blocks
 $new_blocks = read_db_from_file($db_in_file);
