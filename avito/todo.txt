@@ -27,7 +27,7 @@ Module 2 "Analyser" :
 		Stage 2 For big data sources - automatic clustering
 			get_words($str){} ---
 +	statistic
-		price statistics, min, max, average, alert level
+		price statistics, min, max, average, sigma, alert level
 	anomaly, optimisation
 	alerter
 		report all interests
