@@ -9,7 +9,7 @@ echo "\n[+] Started\n";
 $db_dir ='..'.DIRECTORY_SEPARATOR.'db';
 $db_file = $db_dir.DIRECTORY_SEPARATOR.'avito.gz';//local, one run data base
 if(!is_dir($db_dir)) mkdir ($db_dir);
-$debug_file = 'debug.html';//cache
+$debug_file = '..'.DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR.'debug.html';//cache
 $url = "http://www.avito.ru/sankt-peterburg/ohota_i_rybalka?metro_id=170&user=1&s=1";
 $in = http_get_debug($url,$debug_file);
 if(!$in) {

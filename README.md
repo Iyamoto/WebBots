@@ -53,6 +53,15 @@ Module 2 "Analyser" m2.php : Form global db, check new data for uniqs, tag and c
 	visualisation
 		price graphics
 
+Directory Structure
+===================
+.htaccess
+robots.txt
+db - json files, writable by root
+libs - php libs
+tpl - html templates
+bot - web bot php scripts
+
 WebBots Ideas
 =============
 
@@ -67,6 +76,7 @@ New RU domains
         malware
         Profile
             emails
+            SE id
 
     whois    
 

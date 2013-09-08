@@ -86,7 +86,7 @@ define("WEBBOT_NAME", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1;)"
 define("CURL_TIMEOUT", 25);
 
 # Location of your cookie file. (Must be fully resolved local address)
-define("COOKIE_FILE", "cookie.txt");
+define("COOKIE_FILE", '..'.DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR.'cookie.txt');
 
 # DEFINE METHOD CONSTANTS
 define("HEAD", "HEAD");
@@ -329,15 +329,22 @@ function http_get_debug($url,$debug_file){
 		$data_array = "";
 		$header[] = "Accept-Encoding: compress, gzip";
 		$web_page = http_get($url, $ref, $method, $data_array, $header);
-	
+                $r = preg_match('|charset=(.*)|',$web_page['STATUS']['content_type'],$m);
+                if($r) {
+                    $codepage = $m[1];
+                    echo "[+] Charset detected: $codepage\n";
+                    if(stristr($codepage,'utf8') or stristr($codepage, 'utf-8'))
+                            echo "[+] Charset is good\n";
+                    else echo "[-] Convert from $codepage to UTF8\n";       
+                }    
 		# Get sizes of compressed and uncompressed versions of web page
-		$uncompressed_size = strlen($web_page['FILE']);
+		/*
+                $uncompressed_size = strlen($web_page['FILE']);
 		$compressed_size = strlen(gzcompress($web_page['FILE'], $compression_value = 9)); 
 		$noformat_size = strlen(strip_tags($web_page['FILE']));
-		//var_dump($uncompressed_size,$compressed_size,$noformat_size);
-		
+		var_dump($uncompressed_size,$compressed_size,$noformat_size);
+		*/
 		file_put_contents($debug_file, $web_page['FILE']);
-		//$in = $web_page['FILE'];
 	}
 	return $web_page;
 }	
