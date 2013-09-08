@@ -17,13 +17,11 @@ if(!$in) {
 	exit;
 }	
 //Base Url 
-//What is a base url? Domain
 $url = $in['STATUS']['url'];
 $base_url = get_base_page_address($url);
 echo "[+] Base url: $base_url\n";
 
 $tidy = tidy_html($in['FILE']);
-//base url finder
 //add code page check and convert if needed
 
 //Marks for blocks

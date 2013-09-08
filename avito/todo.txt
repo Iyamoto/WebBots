@@ -1,6 +1,17 @@
 ToDo
 ====
 
+M1: add OS delimiter detection
+M2: function search_for_block($blocks,$needle)
+M2: add code page check and convert to utf8 if needed
+M1: multiple links support
+
 Hashes as blocks IDs?
-Add OS delimiter detection
 Research taxonomy
+Use classes?
+
+Ideas
+=====
+
+Images hijacking
+Links checkers

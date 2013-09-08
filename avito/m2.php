@@ -32,6 +32,7 @@ if($global_blocks) { //Global db exists
     unset($new_blocks);
     //Insert new tagged blocks into global db
     $global_blocks = insert_to_array($global_blocks,$tagged_blocks);
+    unset($tagged_blocks);
 } else { //Global db is empty
     $global_blocks = tagged($new_blocks);//Tag uniq blocks
     unset($new_blocks);
