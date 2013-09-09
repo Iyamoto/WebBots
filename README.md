@@ -59,6 +59,7 @@ db - json files, writable by root
 libs - php libs
 tpl - html templates
 bot - web bot php scripts
+tmp
 
 WebBots Ideas
 =============
