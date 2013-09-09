@@ -6,10 +6,13 @@
 require_once '..'.DIRECTORY_SEPARATOR.'libs'.DIRECTORY_SEPARATOR.'web_bots.php';
 echo "\n[+] Started\n";
 
+//Init
 $db_dir ='..'.DIRECTORY_SEPARATOR.'db';
+$tmp_dir ='..'.DIRECTORY_SEPARATOR.'tmp';
 $db_file = $db_dir.DIRECTORY_SEPARATOR.'avito.gz';//local, one run data base
 if(!is_dir($db_dir)) mkdir ($db_dir);
-$debug_file = '..'.DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR.'debug.html';//cache
+if(!is_dir($tmp_dir)) mkdir ($tmp_dir);
+$debug_file = $tmp_dir.DIRECTORY_SEPARATOR.'debug.html';//cache
 $url = "http://www.avito.ru/sankt-peterburg/ohota_i_rybalka?metro_id=170&user=1&s=1";
 $in = http_get_debug($url,$debug_file);
 if(!$in) {
@@ -22,7 +25,6 @@ $base_url = get_base_page_address($url);
 echo "[+] Base url: $base_url\n";
 
 $tidy = tidy_html($in['FILE']);
-//add code page check and convert if needed
 
 //Marks for blocks
 $div_marks[] = 'img';

@@ -51,7 +51,7 @@ function get_imgs_dom($str){
 }*/
 
 function get_imgs($str, $base_url){
-	$imgs = parse_array($str, '<img', '/>');
+	$imgs = parse_array($str, '<img', '>');
 	foreach($imgs as $img){
                 $url = get_attribute($img, 'src');
                 $img_links[] = resolve_address($url, $base_url);

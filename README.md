@@ -1,10 +1,8 @@
 GitMobile
 =========
 
-Mobile GIT repository
-
-exploring web bots
-under heavy construction
+WebBots repository
+Exploring web bots for fun and profit
 
 Bot development principles:
 1. Win ans *nix compatibility
@@ -65,19 +63,4 @@ bot - web bot php scripts
 WebBots Ideas
 =============
 
-New RU domains
-    Headers
-    IP
-    html
-        Titles
-        Images hijacking
-        Links checkers
-        iframes
-        malware
-        Profile
-            emails
-            SE id
-
-    whois    
-
-Free broken link checker
+Broken link checker
