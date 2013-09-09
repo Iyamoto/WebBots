@@ -2,6 +2,7 @@ ToDo
 ====
 
 GIT: New repository for web site integration
+Taxonomy: read taxonomy from csv file category:mark1;mark2... $taxonomy = load_taxonomy(taxonomy_file)
 M2: function search_for_block($blocks,$needle)
 M1: multiple links support, links from db or csv file, fetch in random order
 Server: cron daily with bot_master.sh > bot.log
