@@ -5,7 +5,7 @@ GIT: New repository for web site integration
 Taxonomy: read taxonomy from csv file category:mark1;mark2... $taxonomy = load_taxonomy(taxonomy_file)
 M2: function search_for_block($blocks,$needle)
 M1: improve load_urls(); - check for line separator
-M1: fix notice web_bots.php on line 37
+M1: uniq links in block elements?
 Server: cron daily with bot_master.sh > bot.log
                     run avito.php
                     run m2.php

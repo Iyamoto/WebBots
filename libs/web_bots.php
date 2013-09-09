@@ -32,10 +32,8 @@ function clear_text($str){
 
 function get_links($str, $base_url){
 	$links = parse_array($str, '<a href="', '"', 1);
-	$uniq_links = array_unique($links);
-        for($i=0;$i<sizeof($uniq_links);$i++){
-            $url = $uniq_links[$i];
-            $uniq_links[$i] = resolve_address($url, $base_url);
+        foreach($links as $link){
+            $uniq_links[] = resolve_address($link, $base_url);
         }
 	return $uniq_links;
 }
