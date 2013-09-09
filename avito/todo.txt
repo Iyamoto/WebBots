@@ -9,6 +9,7 @@ Server: cron daily with bot_master.sh > bot.log
                     run avito.php
                     run m2.php
                     run backup db
+Global: Category links grabber for avito
                     
 
 Hashes as blocks IDs?
