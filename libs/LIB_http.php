@@ -317,14 +317,13 @@ function http($target, $ref, $method, $data_array, $incl_head)
 	
 	
 //http_get with simple cashing
-function http_get_debug($url,$debug_file){
+function http_get_debug($url,$debug_file,$ref='http://google.com/'){
 	if(file_exists($debug_file)){
 		$in = file_get_contents($debug_file);
                 $web_page['FILE'] = $in;
                 $web_page['STATUS']['url'] = $url;
 	} else {
 		# Get web page
-		$ref = "";
 		$method = "GET";
 		$data_array = "";
 		$header[] = "Accept-Encoding: compress, gzip";

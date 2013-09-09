@@ -4,11 +4,14 @@ ToDo
 GIT: New repository for web site integration
 Taxonomy: read taxonomy from csv file category:mark1;mark2... $taxonomy = load_taxonomy(taxonomy_file)
 M2: function search_for_block($blocks,$needle)
-M1: multiple links support, links from db or csv file, fetch in random order
+M1: add random timeouts
+M1: improve load_urls(); - check for line separator
+M1: fix notice web_bots.php on line 37
 Server: cron daily with bot_master.sh > bot.log
                     run avito.php
                     run m2.php
                     run backup db
+                    delete html cache files
 Global: Category links grabber for avito
                     
 

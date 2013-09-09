@@ -125,4 +125,10 @@ function read_db_from_file($filename){
     }    
 }
 
+function load_urls($urls_file){
+    $str = file_get_contents($urls_file);
+    $urls = explode("\n",$str);
+    return $urls;
+}
+
 ?>
