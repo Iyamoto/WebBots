@@ -328,6 +328,7 @@ function http_get_debug($url,$debug_file,$ref='http://google.com/'){
 		$data_array = "";
 		$header[] = "Accept-Encoding: compress, gzip";
 		$web_page = http_get($url, $ref, $method, $data_array, $header);
+                sleep(mt_rand(2, 5));//human emulation
                 $r = preg_match('|charset=(.*)|',$web_page['STATUS']['content_type'],$m);
                 if($r) {
                     $codepage = $m[1];
