@@ -10,10 +10,16 @@ echo "\n[+] Started\n";
 $db_dir ='..'.DIRECTORY_SEPARATOR.'db';
 $tmp_dir ='..'.DIRECTORY_SEPARATOR.'tmp';
 $db_file = $db_dir.DIRECTORY_SEPARATOR.'avito.gz';//local, one run data base
+$urls_file = $db_dir.DIRECTORY_SEPARATOR.'links.txt';
 if(!is_dir($db_dir)) mkdir ($db_dir);
 if(!is_dir($tmp_dir)) mkdir ($tmp_dir);
+
+//$urls = load_urls($urls_file);
+//$hash = md5($url);
+//$debug_file = $tmp_dir.DIRECTORY_SEPARATOR.$hash.'.html';//cache
 $debug_file = $tmp_dir.DIRECTORY_SEPARATOR.'debug.html';//cache
 $url = "http://www.avito.ru/sankt-peterburg/ohota_i_rybalka?metro_id=170&user=1&s=1";
+
 $in = http_get_debug($url,$debug_file);
 if(!$in) {
 	echo "[-] Cant load html\n";
