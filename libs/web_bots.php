@@ -1,8 +1,8 @@
 <?php
-require_once '..\libs\LIB_parse.php';
-require_once '..\libs\LIB_http.php';
-require_once '..\libs\LIB_download_images.php';
-require_once '..\libs\simple_html_dom.php';
+require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'LIB_parse.php';
+require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'LIB_http.php';
+require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'LIB_download_images.php';
+require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'simple_html_dom.php';
 
 mb_internal_encoding("UTF-8");
 
