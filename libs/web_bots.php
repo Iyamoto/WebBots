@@ -125,8 +125,12 @@ function read_db_from_file($filename){
 
 function load_urls($urls_file){
     $str = file_get_contents($urls_file);
-    $urls = explode("\n",$str);
+    $urls = str2array($str);
     return $urls;
 }
 
+function str2array($str){
+    $array = explode("\n",$str);
+    return $array;
+}
 ?>
