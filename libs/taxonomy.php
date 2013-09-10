@@ -1,7 +1,7 @@
 <?php
 //Init
-$db_dir ='..'.DIRECTORY_SEPARATOR.'db';
-$taxonomy_file = $db_dir.DIRECTORY_SEPARATOR.'taxonomy.csv';
+$tax_dir ='..'.DIRECTORY_SEPARATOR.'libs';
+$taxonomy_file = $tax_dir.DIRECTORY_SEPARATOR.'taxonomy.csv';
 
 //Load dictionary from the file
 $data = csv2array($taxonomy_file);
