@@ -2,6 +2,7 @@
 
 /*
  * Module 2 - Analysis
+ * Filter to global DB
  */
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'web_bots.php';
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'taxonomy.php';
@@ -46,7 +47,6 @@ $global_size = sizeof($global_blocks);
 echo "[+] Global db size: $global_size\n";
 
 //Parse global to clusters
-//Why do it every run for all global blocks? TODO
 $clusters = form_clusters($global_blocks);
 $clusters_size = sizeof($clusters);
 echo "[+] Formed $clusters_size clusters\n";
@@ -68,29 +68,20 @@ foreach ($clusters as $category => $tagged_blocks) {
     $stats[$category]['low_limit'] = round($stats[$category]['average'] - 3 * $stats[$category]['standard_deviation']);
     $stats[$category]['high_limit'] = round($stats[$category]['average'] + 3 * $stats[$category]['standard_deviation']);
 }
-var_dump($stats);
 
 if (save_json($db_global_file, $global_blocks))
     echo "[+] Saved global db file\n";
 if (save_json($db_stats_file, $stats))
     echo "[+] Saved stats file\n";
 
-function form_clusters($blocks) {
-    foreach ($blocks as $block) {
-        foreach ($block['tags'] as $tag) {
-            $clusters[$tag][] = $block;
-        }
-    }
-    return $clusters;
-}
-
-function tagged($blocks) { //Clustering
+function tagged($blocks) { //Tagging
     $size = sizeof($blocks);
     global $taxonomy;
     $untagged_blocks_counter = 0;
     for ($i = 0; $i < $size; $i++) {
         $notag = true;
         foreach ($taxonomy as $category => $marks) {
+            //unset($blocks[$i]['tags']);
             foreach ($marks as $mark) {
                 if (mb_stristr($blocks[$i]['clear_text'], $mark)) {
                     $blocks[$i]['tags'][] = $category;

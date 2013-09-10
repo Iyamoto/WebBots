@@ -181,4 +181,14 @@ function insert_to_array($base_array, $add_array) {
     }
     return $add_array;
 }
+
+function form_clusters($blocks) { //Clustering
+    foreach ($blocks as $block) {
+        foreach ($block['tags'] as $tag) {
+            $clusters[$tag][] = $block;
+        }
+    }
+    unset($clusters['NA']);
+    return $clusters;
+}
 ?>
