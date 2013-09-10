@@ -2,11 +2,7 @@ ToDo
 ====
 Global: php pointers?
 Urler: filter useful, save to json?
-Taxonomy: read taxonomy from csv file category:mark1;mark2... 
-    $taxonomy = load_taxonomy(taxonomy_file)
-    $array = csv2array($filename)
 M2: function search_for_block($blocks,$needle)
-M1: improve str2array(); - check for line separator
 M1: uniq links in block elements?
 Server: cron daily with bot_master.sh > bot.log
                     run avito.php

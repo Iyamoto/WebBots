@@ -130,7 +130,30 @@ function load_urls($urls_file){
 }
 
 function str2array($str){
-    $array = explode("\n",$str);
+    $array = explode("\r\n",$str);
+    if (sizeof($array)==1) $array = explode("\n",$str);
     return $array;
+}
+
+function csv2array($filename){
+    if(file_exists($filename)){
+            $tmp = file_get_contents($filename);
+            if($tmp){
+                    if (strstr($tmp,'﻿')) $tmp = mb_strcut($tmp,3);
+                    $keys = explode("\r\n",$tmp);
+                    if (sizeof($keys)==1) $keys = explode("\n",$tmp);
+                    $i=0;
+                    foreach($keys as $str){
+                            if(mb_strlen(trim($str))>0){
+                                    $elements = explode(';',$str);
+                                    foreach($elements as $element){
+                                        $data[$i][]=$element;
+                                    }
+                                    $i++;
+                            }	
+                    }
+                    return $data;
+            } else return false;
+    } else return false;
 }
 ?>
