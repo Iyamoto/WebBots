@@ -42,7 +42,7 @@ $global_size = sizeof($global_blocks);
 echo "[+] Global db size: $global_size\n";
 
 //Parse global to clusters
-//Why do it every run for all global blocks?
+//Why do it every run for all global blocks? TODO
 $clusters = form_clusters($global_blocks);
 $clusters_size = sizeof($clusters);
 echo "[+] Formed $clusters_size clusters\n";
