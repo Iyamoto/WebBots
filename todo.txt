@@ -1,10 +1,16 @@
 ToDo
 ====
-Global: php pointers?
+
 M2: function search_for_block($blocks,$needle)
 M1: uniq links in block elements?
 Reporter: design it
-GIT: New repository for web site integration                    
+GIT: New repository for web site integration   
+M1: src design checker?
+M2: report db updates to mail?  
+Global: NA tag problem
+    reclustering?
+
+Global: use pass-by-reference function for arrays              
 
 Hashes as blocks IDs?
 Research taxonomy

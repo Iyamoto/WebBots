@@ -68,6 +68,7 @@ foreach ($clusters as $category => $tagged_blocks) {
     $stats[$category]['low_limit'] = round($stats[$category]['average'] - 3 * $stats[$category]['standard_deviation']);
     $stats[$category]['high_limit'] = round($stats[$category]['average'] + 3 * $stats[$category]['standard_deviation']);
 }
+var_dump($stats);
 
 if (save_json($db_global_file, $global_blocks))
     echo "[+] Saved global db file\n";
@@ -105,13 +106,6 @@ function tagged($blocks) { //Clustering
     }
     echo "[i] Blocks without tags: $untagged_blocks_counter\n";
     return $blocks;
-}
-
-function insert_to_array($base_array, $add_array) {
-    foreach ($base_array as $array) {
-        $add_array[] = $array;
-    }
-    return $add_array;
 }
 
 /*

@@ -174,4 +174,11 @@ function array2file($filename,$array){
 	$r = file_put_contents($filename,$text);
         return $r;
 }
+
+function insert_to_array($base_array, $add_array) {
+    foreach ($base_array as $array) {
+        $add_array[] = $array;
+    }
+    return $add_array;
+}
 ?>
