@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Module 4 - ReTagging and ReClustering
+ * Module 3 - Tagging and Clustering
  */
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'web_bots.php';
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'taxonomy.php';

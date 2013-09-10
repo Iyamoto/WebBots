@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Module 3 - Reporter
+ * Module 4 - Reporter
  */
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'web_bots.php';
 echo "\n[+] Started\n";
