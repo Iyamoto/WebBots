@@ -90,7 +90,7 @@ function get_divs($str,$marks){
 		}	
 	}
 	echo "[+] Found $g good div blocks\n";
-	return $good_divs;
+	return $good_divs;//@FIXME check if 0 good blocks
 }
 
 function save_json($fn,$data){
@@ -155,5 +155,23 @@ function csv2array($filename){
                     return $data;
             } else return false;
     } else return false;
+}
+
+function get_all_links($str) {
+    $links = parse_array($str, "<a", "</a>");
+    foreach ($links as $link) {
+        $hrefs[] = get_attribute($link, "href");
+    }
+    return $hrefs;
+}
+
+function array2file($filename,$array){
+	$text='';
+	foreach($array as $str){
+		$text.=$str."\n";
+	}
+	$text = trim($text);
+	$r = file_put_contents($filename,$text);
+        return $r;
 }
 ?>
