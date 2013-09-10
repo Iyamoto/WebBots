@@ -1,6 +1,6 @@
 ﻿<?php
 /*
- * Module 1
+ * Module 1 - Collector
  * Avito.ru grabber and parser
  */
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'web_bots.php';

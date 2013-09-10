@@ -7,7 +7,6 @@ Reporter: design it
 GIT: New repository for web site integration   
 M1: src design checker?
 M2: report db updates to mail?  
-Global: Get tagging out of m2? Retagger?
 
 Global: use pass-by-reference function for arrays              
 
