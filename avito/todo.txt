@@ -3,11 +3,6 @@ ToDo
 Global: php pointers?
 M2: function search_for_block($blocks,$needle)
 M1: uniq links in block elements?
-Server: cron daily with bot_master.sh > bot.log
-                    run avito.php
-                    run m2.php
-                    run backup db
-                    delete html cache files
 Reporter: design it
 GIT: New repository for web site integration                    
 
