@@ -5,7 +5,7 @@ Copyright 2007, Michael Schrenk
    This software is designed for use with the book,                                                             
    "Webbots, Spiders, and Screen Scarpers", Michael Schrenk, 2007 No Starch Press, San Francisco CA             
                                                                                                                 
-W3C® SOFTWARE NOTICE AND LICENSE                                                                                
+W3Cï¿½ SOFTWARE NOTICE AND LICENSE                                                                                
                                                                                                                 
 This work (and included software, documentation such as READMEs, or other                                       
 related items) is being provided by the copyright holders under the following license.                          
@@ -154,10 +154,10 @@ INPUT:
         $close_tag  Name of the closing tag (i.e. "</title>")           
                                                                         
 ***********************************************************************/
-function parse_array($string, $beg_tag, $close_tag, $exclude = 0)
+function parse_array($string, $beg_tag, $close_tag, $index=0)
     {
     preg_match_all("($beg_tag(.*)$close_tag)siU", $string, $matching_data);
-    return $matching_data[$exclude];
+    return $matching_data[$index];
     }
 	
 	

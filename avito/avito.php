@@ -26,11 +26,9 @@ foreach($urls as $url){
     $hash = md5($url);
     $debug_file = $tmp_dir.DIRECTORY_SEPARATOR.$hash.'.html';//cache
     $in = http_get_debug($url,$debug_file,$ref);
+    if(!$in) exit('[-] Cant load html');
     $ref = $url;
-    if(!$in) {
-            echo "[-] Cant load html\n";
-            exit;
-    }	
+
     //Base Url 
     $url = $in['STATUS']['url'];
     $base_url = get_base_page_address($url);
