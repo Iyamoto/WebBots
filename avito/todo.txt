@@ -1,7 +1,6 @@
 ToDo
 ====
 Global: php pointers?
-Urler: filter useful, save to json?
 M2: function search_for_block($blocks,$needle)
 M1: uniq links in block elements?
 Server: cron daily with bot_master.sh > bot.log
@@ -9,6 +8,7 @@ Server: cron daily with bot_master.sh > bot.log
                     run m2.php
                     run backup db
                     delete html cache files
+Reporter: design it
 GIT: New repository for web site integration                    
 
 Hashes as blocks IDs?
