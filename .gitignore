@@ -220,5 +220,5 @@ pip-log.txt
 cookie.txt
 log.txt
 debug.html
-/tmp/
-/db/
+tmp/
+db/
