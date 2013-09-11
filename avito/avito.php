@@ -53,16 +53,15 @@ foreach ($urls as $url) {
         $blocks[$i]['links'] = get_links($html_blocks[$i], $base_url);
         if (sizeof($blocks[$i]['imgs']) > 0)
             $fill++;
-        $blocks[$i]['raw_text'] = strip_tags($html_blocks[$i]); //Should I keep a raw text? @todo
-        if (strlen($blocks[$i]['raw_text']) > 0)
-            $fill++;
-        $blocks[$i]['clear_text'] = clear_text($blocks[$i]['raw_text']);
+        $raw_text = strip_tags($html_blocks[$i]);
+           
+        $blocks[$i]['clear_text'] = clear_text($raw_text);
         if (strlen($blocks[$i]['clear_text']) > 0)
             $fill++;
         $blocks[$i]['price'] = get_price($blocks[$i]['clear_text']);
         if (strlen($blocks[$i]['price']) > 0)
             $fill++;
-        if ($fill < 5) {
+        if ($fill < 4) {
             echo "[-] Corrupted block: $i\n";
             $corrupt_blocks++;
             $blocks[$i]['hash'] = md5($blocks[$i]['clear_text']);//FIXME 

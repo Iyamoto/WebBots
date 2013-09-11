@@ -3,6 +3,7 @@ ToDo
 
 Reporter: design it
 
+Cron: random sleep
 M2: function search_for_block($blocks,$needle)
 M1: uniq links in block elements?
 
