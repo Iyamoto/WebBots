@@ -47,7 +47,7 @@ if ($global_blocks) { //Global db exists
 else
     exit('Problem with global blocks');
 
-//if (save_json($db_global_file, $tagged_blocks))
+//if (save_json($db_tagged_file, $tagged_blocks))
   //  echo "[+] Saved global db file\n";
 if (save_json($db_stats_file, $stats))
     echo "[+] Saved stats file\n";
@@ -75,7 +75,7 @@ function tagged($blocks) { //Tagging
             $untagged_blocks_counter++;
         }
     }
-    echo "[i] Blocks without tags: $untagged_blocks_counter\n";
+    echo "[i] Tags not found for $untagged_blocks_counter blocks\n";
     return $blocks;
 }
 ?>
