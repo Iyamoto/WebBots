@@ -63,11 +63,10 @@ foreach ($urls as $url) {
             $fill++;
         if ($fill < 4) {
             echo "[-] Corrupted block: $i\n";
-            $corrupt_blocks++;
-            $blocks[$i]['hash'] = md5($blocks[$i]['clear_text']);//FIXME 
-        } else {
-            $blocks[$i]['hash'] = md5($blocks[$i]['clear_text']);
-        }
+            $corrupt_blocks++; 
+        } 
+        $blocks[$i]['hash'] = md5($blocks[$i]['clear_text']);
+        
         $global_blocks[] = $blocks[$i];
         //break;
     }
@@ -76,6 +75,7 @@ foreach ($urls as $url) {
 
     unset($blocks);
 } //end of main cicle
+
 //var_dump($global_blocks);
 $global_size = sizeof($global_blocks);
 echo "[+] $global_size blocks found\n";

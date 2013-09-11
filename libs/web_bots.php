@@ -90,7 +90,8 @@ function get_divs($str,$marks){
 		}	
 	}
 	echo "[+] Found $g good div blocks\n";
-	return $good_divs;//@FIXME check if 0 good blocks
+        if($g==0) return false;
+	else return $good_divs;
 }
 
 function save_json($fn,$data){

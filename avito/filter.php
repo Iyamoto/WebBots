@@ -37,7 +37,7 @@ if ($global_blocks) { //Global db exists
     $global_blocks = insert_to_array($global_blocks, $uniq_blocks);
     unset($uniq_blocks);
 } else { //Global db is empty
-    $global_blocks = $new_blocks; //@FIXME optimize
+    $global_blocks = $new_blocks;
     unset($new_blocks);
 }
 
