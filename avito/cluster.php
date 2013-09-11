@@ -40,8 +40,8 @@ if ($global_blocks) { //Global db exists
         //Sigma (standard_deviation)
         $stats[$category]['standard_deviation'] = round(sqrt(($SX2 / $stats[$category]['size'] - pow($stats[$category]['sum'] / $stats[$category]['size'], 2))));
         // 3 Sigma
-        $stats[$category]['low_limit'] = round($stats[$category]['average'] - 3 * $stats[$category]['standard_deviation']);
-        $stats[$category]['high_limit'] = round($stats[$category]['average'] + 3 * $stats[$category]['standard_deviation']);
+        $stats[$category]['low_limit'] = round($stats[$category]['average'] - 1 * $stats[$category]['standard_deviation']);
+        $stats[$category]['high_limit'] = round($stats[$category]['average'] + 1 * $stats[$category]['standard_deviation']);
     }
 }
 else

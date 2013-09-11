@@ -19,7 +19,7 @@ $ref = 'http://www.avito.ru';
 $div_marks[] = 'img';
 $div_marks[] = 'руб';
 
-$urls = load_urls($urls_file);
+$urls = load_urls($urls_file);//Load urls
 shuffle($urls);
 if (!$urls)
     exit('[-] Cant load urls');
@@ -53,7 +53,7 @@ foreach ($urls as $url) {
         $blocks[$i]['links'] = get_links($html_blocks[$i], $base_url);
         if (sizeof($blocks[$i]['imgs']) > 0)
             $fill++;
-        $blocks[$i]['raw_text'] = strip_tags($html_blocks[$i]); //Should I keep a raw text?
+        $blocks[$i]['raw_text'] = strip_tags($html_blocks[$i]); //Should I keep a raw text? @todo
         if (strlen($blocks[$i]['raw_text']) > 0)
             $fill++;
         $blocks[$i]['clear_text'] = clear_text($blocks[$i]['raw_text']);
