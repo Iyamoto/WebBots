@@ -1,16 +1,17 @@
 ToDo
 ====
 
+Reporter: design it
+
 M2: function search_for_block($blocks,$needle)
 M1: uniq links in block elements?
-Reporter: design it
+
 GIT: New repository for web site integration   
 M1: src design checker?
 M2: report db updates to mail?  
 
 Global: use pass-by-reference function for arrays              
 
-Hashes as blocks IDs?
 Research taxonomy
 Use classes?
 Add reporter web UI: new items of interest, stats, search etc 
