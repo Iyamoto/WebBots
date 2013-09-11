@@ -8,8 +8,7 @@ M2: function search_for_block($blocks,$needle)
 M1: uniq links in block elements?
 
 GIT: New repository for web site integration   
-M1: src design checker?
-M2: report db updates to mail?  
+M1: src design checker?  
 
 Global: use pass-by-reference function for arrays              
 
@@ -21,3 +20,6 @@ Ideas
 =====
 YII integration
 Twitter bootstrap
+http://habrahabr.ru/post/154687/
+http://www.yiiframework.com/extension/bootstrap/
+http://www.cniska.net/yii-bootstrap/
