@@ -7,7 +7,7 @@ require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'web_bo
 echo "\n[+] Started\n";
 
 //Init
-$db_dir = '..' . DIRECTORY_SEPARATOR . 'db';
+$db_dir = '..' . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR . 'db';
 $tmp_dir = '..' . DIRECTORY_SEPARATOR . 'tmp';
 $urls_file = $db_dir . DIRECTORY_SEPARATOR . 'urls.txt';
 if (!is_dir($db_dir))

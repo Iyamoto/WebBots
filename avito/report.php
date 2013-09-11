@@ -6,7 +6,7 @@
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'web_bots.php';
 echo "\n[+] Started\n";
 
-$db_dir = '..' . DIRECTORY_SEPARATOR . 'db';
+$db_dir = '..' . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR . 'db';
 $db_global_file = $db_dir . DIRECTORY_SEPARATOR . 'avito-global.gz'; //global data base
 $db_stats_file = $db_dir . DIRECTORY_SEPARATOR . 'avito-stats.gz';
 
