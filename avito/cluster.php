@@ -18,8 +18,8 @@ if ($global_blocks) { //Global db exists
     $global_size = sizeof($global_blocks);
     echo "[+] Read $global_size global blocks\n";
     
-    $tagged_blocks = tagged($global_blocks); //reTag blocks
-    unset($global_blocks);
+    $tagged_blocks = tagged($global_blocks); //reTag blocks TODO ref
+    unset($global_blocks);//TODO ref
     
     //reClustering
     $clusters = form_clusters($tagged_blocks);
@@ -39,7 +39,7 @@ if ($global_blocks) { //Global db exists
         $stats[$category]['average'] = round($stats[$category]['sum'] / $stats[$category]['size']);
         //Sigma (standard_deviation)
         $stats[$category]['standard_deviation'] = round(sqrt(($SX2 / $stats[$category]['size'] - pow($stats[$category]['sum'] / $stats[$category]['size'], 2))));
-        // 3 Sigma
+        // 1 Sigma
         $stats[$category]['low_limit'] = round($stats[$category]['average'] - 1 * $stats[$category]['standard_deviation']);
         $stats[$category]['high_limit'] = round($stats[$category]['average'] + 1 * $stats[$category]['standard_deviation']);
     }

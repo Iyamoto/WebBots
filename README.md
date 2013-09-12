@@ -1,4 +1,4 @@
-GitMobile
+WebBots
 =========
 
 WebBots repository

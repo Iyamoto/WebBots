@@ -34,7 +34,7 @@ if ($global_blocks) { //Global db exists
         exit('[-] Exit: Zero uniq blocks found');
     unset($new_blocks);
     //Insert uniq blocks into global db
-    $global_blocks = insert_to_array($global_blocks, $uniq_blocks);
+    $global_blocks = insert_to_array($global_blocks, $uniq_blocks);//TODO ref
     unset($uniq_blocks);
 } else { //Global db is empty
     $global_blocks = $new_blocks;
@@ -57,7 +57,7 @@ if (save_json($db_global_file, $global_blocks))
   Not found - uniq +1
  */
 
-function get_uniq_blocks($new_blocks, $global_blocks) {
+function get_uniq_blocks(&$new_blocks, &$global_blocks) {
     $uniq_blocks_counter = 0;
     $global_size = sizeof($global_blocks);
     foreach ($new_blocks as $new_block) {
