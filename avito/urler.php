@@ -9,7 +9,7 @@ echo "\n[+] Started\n";
 //Init
 $db_dir = '..' . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR . 'db';
 $tmp_dir = '..' . DIRECTORY_SEPARATOR . 'tmp';
-$urls_file = $db_dir . DIRECTORY_SEPARATOR . 'urls.txt';
+$urls_file = $db_dir . DIRECTORY_SEPARATOR . 'avito-urls.txt';
 if (!is_dir($db_dir))
     mkdir($db_dir);
 if (!is_dir($tmp_dir))

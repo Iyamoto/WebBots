@@ -10,7 +10,7 @@ echo "\n[+] Started\n";
 $db_dir = '..' . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR . 'db';
 $tmp_dir = '..' . DIRECTORY_SEPARATOR . 'tmp';
 $db_file = $db_dir . DIRECTORY_SEPARATOR . 'avito.gz'; //local, one run data base
-$urls_file = $db_dir . DIRECTORY_SEPARATOR . 'urls.txt';
+$urls_file = $db_dir . DIRECTORY_SEPARATOR . 'avito-urls.txt';
 if (!is_dir($db_dir))
     mkdir($db_dir);
 if (!is_dir($tmp_dir))
