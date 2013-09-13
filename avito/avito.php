@@ -42,7 +42,10 @@ foreach ($urls as $url) {
 
     //Marks for blocks
     $html_blocks = get_divs($tidy, $div_marks); //Get blocks from html
-    if(!$html_blocks) exit('No good blocks');
+    if(!$html_blocks) {
+        echo "[-] No good blocks\n";
+        continue;
+    }    
     $corrupt_blocks = 0;
 
     //Blocks to elements
