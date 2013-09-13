@@ -6,6 +6,7 @@
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'web_bots.php';
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'taxonomy.php';
 echo "\n[+] Started\n";
+$exec_time = microtime(true);
 
 $db_dir = '..' . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR . 'db';
 $db_global_file = $db_dir . DIRECTORY_SEPARATOR . 'avito-global.gz'; //global data base
@@ -53,6 +54,9 @@ if (save_json($db_stats_file, $stats))
     echo "[+] Saved stats file\n";
 if (save_json($db_clusters_file, $clusters))
     echo "[+] Saved clusters file\n";
+
+$exec_time = round(microtime(true) - $exec_time,2);
+echo "[i] Execution time: $exec_time sec.\n";
 
 function tagged($blocks) { //Tagging
     $size = sizeof($blocks);
