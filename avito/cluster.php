@@ -19,11 +19,10 @@ if ($global_blocks) { //Global db exists
     $global_size = sizeof($global_blocks);
     echo "[+] Read $global_size global blocks\n";
     
-    $tagged_blocks = tagged($global_blocks); //reTag blocks TODO ref
-    unset($global_blocks);//TODO ref
+    tagged($global_blocks); //Tag blocks
     
     //reClustering
-    $clusters = form_clusters($tagged_blocks);
+    $clusters = form_clusters($global_blocks);
     $clusters_size = sizeof($clusters);
     echo "[+] Formed $clusters_size clusters\n";
 
@@ -58,7 +57,7 @@ if (save_json($db_clusters_file, $clusters))
 $exec_time = round(microtime(true) - $exec_time,2);
 echo "[i] Execution time: $exec_time sec.\n";
 
-function tagged($blocks) { //Tagging
+function tagged(&$blocks) { //Tagging
     $size = sizeof($blocks);
     global $taxonomy;
     $untagged_blocks_counter = 0;
@@ -80,6 +79,6 @@ function tagged($blocks) { //Tagging
         }
     }
     echo "[i] Tags not found for $untagged_blocks_counter blocks\n";
-    return $blocks;
+    return sizeof($blocks);
 }
 ?>
