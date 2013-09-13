@@ -7,6 +7,7 @@
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'web_bots.php';
 require_once '..' . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'taxonomy.php';
 echo "\n[+] Started\n";
+$exec_time = microtime(true);
 
 $db_dir = '..' . DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR . 'db';
 $db_in_file = $db_dir . DIRECTORY_SEPARATOR . 'avito.gz';
@@ -33,12 +34,11 @@ if ($global_blocks) { //Global db exists
     if (!$uniq_blocks)
         exit('[-] Exit: Zero uniq blocks found');
     unset($new_blocks);
-    //Insert uniq blocks into global db
-    $global_blocks = insert_to_array($global_blocks, $uniq_blocks);//TODO ref
-    unset($uniq_blocks);
+    //Add global blocks to uniq blocks, new blocks stay upper
+    add_to_array($global_blocks, $uniq_blocks);
+    $global_blocks = &$uniq_blocks;
 } else { //Global db is empty
-    $global_blocks = $new_blocks;
-    unset($new_blocks);
+    $global_blocks = &$new_blocks;
 }
 
 $global_size = sizeof($global_blocks);
@@ -46,6 +46,9 @@ echo "[+] Global db size: $global_size\n";
 
 if (save_json($db_global_file, $global_blocks))
     echo "[+] Saved global db file\n";
+
+$exec_time = round(microtime(true) - $exec_time,2);
+echo "[i] Execution time: $exec_time sec.\n";
 
 /*
   Filter Uniqs

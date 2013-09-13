@@ -176,11 +176,11 @@ function array2file($filename,$array){
         return $r;
 }
 
-function insert_to_array($base_array, $add_array) {
+function add_to_array(&$base_array, &$add_array) {
     foreach ($base_array as $array) {
         $add_array[] = $array;
     }
-    return $add_array;
+    return sizeof($add_array);
 }
 
 function form_clusters(&$blocks) { //Clustering
