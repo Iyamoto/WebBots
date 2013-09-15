@@ -26,6 +26,15 @@ block[] imgs[]
         hash
         tags[]
 
+clusters[]  category    size
+                        sum
+                        average
+                        standard_deviation
+                        low_limit
+                        hi_limit
+                        hashes[]
+                        prices[]
+
 Top-down design
 ===============
 Module 1 "Collector" named by source : Get, parse and save data to db
@@ -71,6 +80,9 @@ parse global blocks to category array
 		price graphics
 
 Module 4 Reporter
+    Show stats for each category
+    Show all blocks in a category with price lower some value - 1 sigma?
+    Report to email new blocks with price lower some value
 
 Directory Structure
 ===================
