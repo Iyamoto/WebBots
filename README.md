@@ -35,6 +35,8 @@ clusters[]  category    size
                         hashes[]
                         prices[]
 
+interests[] category[]  price_level
+
 Top-down design
 ===============
 Module 1 "Collector" named by source : Get, parse and save data to db

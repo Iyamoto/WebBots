@@ -28,14 +28,14 @@ if ($global_blocks) { //Global db exists
 else
     exit('Problem with global blocks');
 
-//$needle = '1000';
-//$needle = 'b1bd9c575e81451dd08f11bbe8c79938';
-//$block = search_for_block($global_blocks,$needle);
+$interests['Куртки'] = 1000;
+$interests['Рюкзаки'] = 2000;
 
 foreach ($stats as $category => $tmp) {
-    $good_blocks[$category] = get_blocks_from_category($category, $stats, $global_blocks);
+    if(isset($interests[$category])) $lvl = $interests[$category];
+    else $lvl = false;
+    $good_blocks[$category] = get_blocks_from_category($category, $stats, $global_blocks, $lvl);
 }
-//var_dump($good_blocks);
 
 $exec_time = round(microtime(true) - $exec_time, 2);
 echo "[i] Execution time: $exec_time sec.\n";
@@ -43,8 +43,8 @@ echo "[i] Execution time: $exec_time sec.\n";
 function get_blocks_from_category($category, &$stats, &$blocks, $lvl = false) {
     if ($lvl == false) {
         $lvl = $stats[$category]['low_limit'];
-        echo "[+] Search level set to $lvl\n";
     }
+    echo "[+] Search level set to $lvl in $category\n";
     for ($i = 0; $i < $stats[$category]['size']; $i++) {
         if ($stats[$category]['prices'][$i] <= $lvl) {
             $good_blocks[] = search_for_block($blocks, $stats[$category]['hashes'][$i]);
@@ -55,8 +55,11 @@ function get_blocks_from_category($category, &$stats, &$blocks, $lvl = false) {
         $size = sizeof($good_blocks);
         echo "[+] Found $size blocks in $category\n";
         return $good_blocks;
-    }   else
+    }   else {
+        echo "[-] Found nothing in $category\n";
         return false;
+    }
+        
 }
 
 //TODO function get_category($str)
