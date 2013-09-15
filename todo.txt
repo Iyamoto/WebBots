@@ -15,6 +15,7 @@ Global: use pass-by-reference function for arrays
 Research taxonomy
 Use classes?
 Add reporter web UI: new items of interest, stats, search etc 
+Global: start Bot-Template project
 
 Ideas
 =====
