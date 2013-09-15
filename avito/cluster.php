@@ -32,7 +32,7 @@ if ($global_blocks) { //Global db exists
         $stats[$category]['sum'] = 0;
         $SX2 = 0;
         foreach ($tagged_blocks as $tagged_block) {
-            $stats[$category]['pool'][] = $tagged_block['price']; //add block hash?
+            $stats[$category]['pool'][] = $tagged_block['hash']; //add block hash?
             $stats[$category]['sum'] += $tagged_block['price'];
             $SX2 += $tagged_block['price'] * $tagged_block['price'];
         }

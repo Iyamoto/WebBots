@@ -16,6 +16,8 @@ Add reporter web UI: new items of interest, stats, search etc
 Global: read http://www.phptherightway.com/#coding_practices
 Global: get a mentor https://github.com/phpmentoring/phpmentoring.github.com/wiki/Mentors-and-Apprentices
          freenode IRC, #phpmentoring
+Global: read http://www.sitepoint.com/store/php-master-write-cutting-edge-code/
+             http://www.phparch.com/books/phparchitects-guide-to-web-scraping-with-php/ - Multiprocessing / parallel processing
 
 Ideas
 =====

@@ -193,7 +193,7 @@ function form_clusters(&$blocks) { //Clustering
 }
 
 function search_for_block(&$blocks,$needle){
-    foreach($blocks as $blocks){
+    foreach($blocks as $block){
         foreach($block as $element){
             if(is_string($element)){
                 if($element==$needle){
