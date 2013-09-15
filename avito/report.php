@@ -51,7 +51,7 @@ function get_blocks_from_category($category, &$stats, &$blocks, $lvl = false) {
         }
     }
     
-    if (is_array($good_blocks)) {
+    if (isset($good_blocks)) {
         $size = sizeof($good_blocks);
         echo "[+] Found $size blocks in $category\n";
         return $good_blocks;
