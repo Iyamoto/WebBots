@@ -83,7 +83,7 @@ parse global blocks to category array
 
 Module 4 Reporter
     Show stats for each category
-    Show all blocks in a category with price lower some value - 1 sigma?
++   Show all blocks in a category with price lower some value - 1 sigma?
     Report to email new blocks with price lower some value
 
 Directory Structure

@@ -1,8 +1,6 @@
 ToDo
 ====
 
-Reporter: design it
-
 Cron: random sleep
 M1: uniq links in block elements?
 

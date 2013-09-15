@@ -29,11 +29,14 @@ else
     exit('Problem with global blocks');
 
 $interests['Куртки'] = 1000;
-$interests['Рюкзаки'] = 2000;
+$interests['Рюкзаки'] = 1000;
+$interests['Блесны'] = 30;
 
 foreach ($stats as $category => $tmp) {
-    if(isset($interests[$category])) $lvl = $interests[$category];
-    else $lvl = false;
+    if (isset($interests[$category]))
+        $lvl = $interests[$category];
+    else
+        $lvl = false;
     $good_blocks[$category] = get_blocks_from_category($category, $stats, $global_blocks, $lvl);
 }
 
@@ -50,16 +53,15 @@ function get_blocks_from_category($category, &$stats, &$blocks, $lvl = false) {
             $good_blocks[] = search_for_block($blocks, $stats[$category]['hashes'][$i]);
         }
     }
-    
+
     if (isset($good_blocks)) {
         $size = sizeof($good_blocks);
         echo "[+] Found $size blocks in $category\n";
         return $good_blocks;
-    }   else {
+    } else {
         echo "[-] Found nothing in $category\n";
         return false;
     }
-        
 }
 
 //TODO function get_category($str)
