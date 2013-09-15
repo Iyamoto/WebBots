@@ -97,7 +97,6 @@ function get_divs($str,$marks){
 function save_json($fn,$data){
 	$json = json_encode($data);
 	$gz = gzcompress($json);
-	//var_dump(strlen($json), strlen($gz));
 	return file_put_contents($fn, $gz);
 }
 
