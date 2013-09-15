@@ -4,18 +4,18 @@ ToDo
 Reporter: design it
 
 Cron: random sleep
-M2: function search_for_block($blocks,$needle)
 M1: uniq links in block elements?
 
 GIT: New repository for web site integration   
-M1: src design checker?  
-
-Global: use pass-by-reference function for arrays              
+M1: src design checker?              
 
 Research taxonomy
 Use classes?
 Add reporter web UI: new items of interest, stats, search etc 
-Global: start Bot-Template project
+
+Global: read http://www.phptherightway.com/#coding_practices
+Global: get a mentor https://github.com/phpmentoring/phpmentoring.github.com/wiki/Mentors-and-Apprentices
+         freenode IRC, #phpmentoring
 
 Ideas
 =====

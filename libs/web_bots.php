@@ -191,4 +191,17 @@ function form_clusters(&$blocks) { //Clustering
     unset($clusters['NA']);
     return $clusters;
 }
+
+function search_for_block(&$blocks,$needle){
+    foreach($blocks as $blocks){
+        foreach($block as $element){
+            if(is_string($element)){
+                if($element==$needle){
+                    //TODO if several blocks have the needle?
+                    return $block;
+                }
+            }
+        }
+    }
+}
 ?>

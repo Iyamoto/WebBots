@@ -17,6 +17,15 @@ repeat: M1 -> M2
 M3
 M4
 
+Data structures
+===============
+block[] imgs[]
+        links[]
+        clear_text
+        price
+        hash
+        tags[]
+
 Top-down design
 ===============
 Module 1 "Collector" named by source : Get, parse and save data to db
