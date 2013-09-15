@@ -50,8 +50,9 @@ function get_blocks_from_category($category, &$stats, &$blocks, $lvl = false) {
             $good_blocks[] = search_for_block($blocks, $stats[$category]['hashes'][$i]);
         }
     }
-    $size = sizeof($good_blocks);
-    if ($size > 0) {
+    
+    if (is_array($good_blocks)) {
+        $size = sizeof($good_blocks);
         echo "[+] Found $size blocks in $category\n";
         return $good_blocks;
     }   else
