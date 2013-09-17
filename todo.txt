@@ -17,6 +17,10 @@ Global: get a mentor https://github.com/phpmentoring/phpmentoring.github.com/wik
 Global: read http://www.sitepoint.com/store/php-master-write-cutting-edge-code/
              https://github.com/elazar/web-scraping-with-php - Multiprocessing / parallel processing
 
+Stats
+http://php.net/manual/en/ref.stats.php
+http://www.justskins.com/forums/statistical-functions-with-php-146762.html
+
 Ideas
 =====
 YII integration
