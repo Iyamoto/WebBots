@@ -55,7 +55,7 @@ foreach ($urls as $url) {
         if (sizeof($blocks[$i]['imgs']) > 0)
             $fill++;
         $blocks[$i]['links'] = get_links($html_blocks[$i], $base_url);
-        if (sizeof($blocks[$i]['imgs']) > 0)
+        if (sizeof($blocks[$i]['links']) > 0)
             $fill++;
         $raw_text = strip_tags($html_blocks[$i]);
            
